@@ -2,21 +2,25 @@ import React, { useState } from 'react'
 import Filter from './components/Filter'
 import MovieList from './components/MovieList'
 import AddMovie from './components/AddMovie'
-
+import { Routes, Route } from 'react-router-dom'
+import MovieDetail from './components/MovieDetail'
 const initialMovies = [
   {
+    id: 1,
     title: 'Inception',
     description: 'A thief who steals corporate secrets through dream-sharing technology.',
     posterURL: 'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg',
     rating: 5,
   },
   {
+    id: 2,
     title: 'The Dark Knight',
     description: 'Batman faces the Joker, a criminal mastermind who plunges Gotham into anarchy.',
     posterURL: 'https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_.jpg',
     rating: 5,
   },
   {
+    id: 3,
     title: 'Interstellar',
     description: 'A team of explorers travel through a wormhole in space to ensure humanitys survival.',
     posterURL: 'https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00YzA1LTk2NWYtZmM1ZThkMjRhNjViXkEyXkFqcGc@._V1_.jpg',
@@ -42,14 +46,21 @@ export default function App() {
   return (
     <div>
       <h1>My Movie App</h1>
-      <AddMovie onAdd={addMovie} />
-      <Filter
-        titleFilter={titleFilter}
-        ratingFilter={ratingFilter}
-        onFilterTitle={setTitleFilter}
-        onFilterRating={setRatingFilter}
-      />
-      <MovieList movies={filteredMovies} />
+      <Routes>
+        <Route pahth="/" element={
+          <> 
+          <AddMovie onAdd={addMovie} />
+          <Filter
+            titleFilter={titleFilter}
+            ratingFilter={ratingFilter}
+            onFilterTitle={setTitleFilter}
+            onFilterRating={setRatingFilter}
+          />
+          <MovieList movies={filteredMovies} />
+          </>
+        }/>
+        <Route path="/movie/:id" element={<MovieDetail movies={movies} />} />
+      </Routes>
     </div>
   )
 }

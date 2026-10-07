@@ -12,6 +12,7 @@ export default function MovieList({ movies }) {
           description={movie.description}
           posterURL={movie.posterURL}
           rating={movie.rating}
+          link
         />
       ))}
     </div>

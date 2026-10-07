@@ -5,15 +5,17 @@ export default function AddMovie({ onAdd }) {
   const [description, setDescription] = useState('')
   const [posterURL, setPosterURL] = useState('')
   const [rating, setRating] = useState('')
+  const [trailerURL , setTrailerURL ] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!title || !description || !posterURL || !rating) return
-    onAdd({ title, description, posterURL, rating: Number(rating) })
+    if (!title || !description || !posterURL || !rating || !trailerURL ) return
+    onAdd({ title, description, posterURL, rating: Number(rating), trailerURL })
     setTitle('')
     setDescription('')
     setPosterURL('')
     setRating('')
+    setTrailerURL('')
   }
 
   return (
@@ -44,6 +46,12 @@ export default function AddMovie({ onAdd }) {
         step="0.1"
         value={rating}
         onChange={(e) => setRating(e.target.value)}
+      />
+      <input
+        type="url"
+        placeholder="Trailer Embed URL (https://www.youtube.com/embed/...)"
+        value={trailerURL}
+        onChange={(e) => setTrailerURL(e.target.value)}
       />
       <button type="submit">Add Movie</button>
     </form>

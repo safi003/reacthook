@@ -8,6 +8,7 @@ export default function MovieCard({ title, description, posterURL, rating }) {
         <h2>{title}</h2>
         <p className="movie-description">{description}</p>
         <p className="movie-rating">Rating: {rating} / 5</p>
+        <link rel="stylesheet" href="" />
       </div>
     </div>
   )
